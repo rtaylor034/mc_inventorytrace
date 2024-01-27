@@ -1,0 +1,18 @@
+> #invtr:event > inventory_change
+--------------------
+ * when any change happens in a player's inventory.
+--------------------
+ [AS] [AT] player
+ -> removed: Item[]
+ -> added: Item[]
+--------------------
+ ...
+--------------------
+- <added> item entries are "new" to [player]'s inventory, while <removed> item entries are no longer present.
+- it is important to note that this tracks item *entries*, not individual items.
+- in most cases the length of <removed> and/or <added> will be 1.
+- example case:
+  - `player has 2 cobblestone in his 1st hotbar slot (Slot 0), and drops 1`
+  - > removed = [{Slot:0b, id:"minecraft:cobblestone", Count:2b}]
+  - > added = [{Slot:0b, id:"minecraft:cobblestone", Count:1b}]
+--------------------
