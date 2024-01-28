@@ -2,6 +2,6 @@
 	"pack": {
 		"pack_format": 18,
 		"supported_formats": {"min_inclusive": 16, "max_inclusive": 30},
-		"description": "Track when players' inventory changes and how -GFunction"
+		"description": "Track when players' inventory changes and how. -GFunction"
 	}
 }
