@@ -12,8 +12,8 @@ data modify storage invtr:var change.check set from storage invtr:var change.las
 execute store result score *change.match invtr_var run data modify storage invtr:var change.check set from storage invtr:var change.current_items
 execute if score *change.match invtr_var matches 0 run return run function invtr:internal/end_early
 
-data modify storage pdata:in merge_self.in.storage.invtr.internal.last_items set from storage invtr:var change.current_items
-function pdata:api/merge_self with storage pdata:in merge_self
+data modify storage pdata:in merge_self.storage.invtr.internal.last_items set from storage invtr:var change.current_items
+function pdata:api/merge_self
 
 execute store result score *change.i invtr_var if data storage invtr:var change.current_items[]
 execute if score *change.i invtr_var matches 1.. run function invtr:internal/iter
@@ -21,8 +21,9 @@ execute if score *change.i invtr_var matches 1.. run function invtr:internal/ite
 data modify storage invtr:var change.call.in.info.removed set from storage invtr:var change.last_items
 
 #-- EVENT : on_inventory_change --
-data modify storage invtr:var change.call.in.event set value "#invtr:event/on_inventory_change"
-function gvent:api/call with storage invtr:var change.call
+data modify storage gvent:in call set from storage invtr:var change.call.in
+data modify storage gvent:in call.event set value "#invtr:event/on_inventory_change"
+function gvent:api/call
 #------
 
 data remove storage invtr:var change
