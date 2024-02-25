@@ -3,8 +3,8 @@
 # internal/tick
 #--------------------
 
-function pdata:api/get_self
-data modify storage invtr:var change.last_items set from storage pdata:out get_self.result.storage.invtr.internal.last_items
+function pdata:api/self/get
+data modify storage invtr:var change.last_items set from storage pdata:out get.result.storage.invtr.internal.last_items
 data modify storage invtr:var change.current_items set from entity @s Inventory
 
 #compare to end function early
@@ -12,8 +12,8 @@ data modify storage invtr:var change.check set from storage invtr:var change.las
 execute store result score *change.match invtr_var run data modify storage invtr:var change.check set from storage invtr:var change.current_items
 execute if score *change.match invtr_var matches 0 run return run function invtr:internal/end_early
 
-data modify storage pdata:in merge_self.storage.invtr.internal.last_items set from storage invtr:var change.current_items
-function pdata:api/merge_self
+data modify storage pdata:in merge.storage.invtr.internal.last_items set from storage invtr:var change.current_items
+function pdata:api/self/merge
 
 execute store result score *change.i invtr_var if data storage invtr:var change.current_items[]
 execute if score *change.i invtr_var matches 1.. run function invtr:internal/iter
