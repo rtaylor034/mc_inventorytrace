@@ -4,3 +4,5 @@
 #--------------------
 
 execute as @a at @s run function invtr:internal/main
+
+schedule function invtr:internal/tick 1t
